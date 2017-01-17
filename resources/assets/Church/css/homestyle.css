@@ -1,0 +1,118 @@
+* {
+	margin: 0px ;
+	padding: 0px ; 
+}
+
+.main_nav {
+	height: 100px ;
+	background: #ADD8E6 ;
+}
+
+.main_nav #logo {
+	display: block ;
+	height: 50px ;
+	margin-top: 25px ;
+}
+
+#first_section {
+	width: 100% ;
+}
+
+#first_section img {
+	display: block ;
+	width: 100% ;
+}
+
+.believer_bible {
+	width: 50% ;
+	height: 100% ;
+	float: left ;
+	overflow: hidden ;
+	position: relative ;
+}
+
+.believer_bible img {
+	transition: 0.5s ;
+	width: 100% ;
+	height: 100% ;
+}
+
+.believer_bible img:hover {
+	transform: scale(1.1) ;
+}
+
+.beli_col_link {
+	display: block ;
+	width: 100% ;
+	height: 90px ;
+	position: absolute ;
+	bottom: 0px ;
+	background: rgba(0,0,0,0.3) ;
+	z-index: 10 ;
+}
+
+
+.first_web , .second_web {
+	width: 50% ;
+	height: 100% ;
+	position: absolute ;
+	padding-left: 20px ;
+	font-weight: bold ;
+	font-size: 16px ;
+	color: #FFF ;
+}
+
+.first_web {
+	right: 0px ;
+	background: #759DB6 ;
+}
+
+.second_web {
+	left: 0px ;
+	background: #AEA8B2 ;
+}
+
+.first_web>span , .second_web>span {
+	position: relative ;
+	top: 20px ;
+}
+
+.btn_visit {
+	display: block ;
+	width: 70px ;
+	line-height: 25px ;
+	text-align: center ;
+	text-transform: uppercase ;
+	color: #575757 ;
+	position: absolute ;
+	border: 1px solid #545454 ;
+	border-radius: 20% ;
+	background: #F1E3D8 ;
+	bottom: 0px ;
+	right: 20px ;
+}
+
+#footer_before {
+	height: 10px ;
+}
+
+#footer {
+	width: 100% ;
+	height: 40px ;
+	background: #DCD9CC ;
+}
+
+@media (max-width: 900px) {
+	.believer_bible {
+		width: 100% ;
+	}
+
+	.beli_col_link {
+		height: 70px ;
+		bottom: 0px ;
+	}
+
+	.first_web , .second_web {
+		width: 100% ;
+	}
+}
