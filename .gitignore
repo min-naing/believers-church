@@ -8,6 +8,6 @@ Homestead.yaml
 .env.php
 .env
 storage/*.key
-public/assets/**
+/public/assets/**
 .believers-church/
 
