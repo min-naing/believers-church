@@ -9,5 +9,7 @@ Homestead.yaml
 .env
 storage/*.key
 /public/assets/**
+public/assets
+/public/assets
 .believers-church/
 

@@ -13,3 +13,8 @@ figure , a , span {
 span:hover>img , a:hover>img , figure:hover>img {
 	transform: scale(1.1) ;
 }
+
+/* error message */
+#content .text-danger {
+	color: #a94442;
+}

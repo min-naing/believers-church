@@ -15,6 +15,8 @@
 
     @include('partials._header_script')
 
+    @yield('header_script')
+
 </head>
 <body class="color-1 h-style-1 text-1">
 
@@ -70,9 +72,7 @@
 <!-- - - - - - - - - - - - - - Main - - - - - - - - - - - - - - - - -->
 
 
-
     @yield('content')
-
 
 
 <!-- - - - - - - - - - - - - end Main - - - - - - - - - - - - - - - - -->

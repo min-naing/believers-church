@@ -10,8 +10,4 @@ class HomeController extends Controller
     public function index() {
         return view('church.index');
     }
-
-    public function contact() {
-        return view('church.contact');
-    }
 }

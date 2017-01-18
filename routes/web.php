@@ -17,7 +17,8 @@ Route::get('/', 'EntranceController@index');
 
 Route::group(array('prefix' => 'church', 'namespace' => 'Church'), function () {
     Route::get('/', 'HomeController@index');
-    Route::get('/contact', 'HomeController@contact');
+    Route::get('/contact', 'ContactUsController@create');
+    Route::post('/contact', ['as'=>'contactus.store','uses'=>'ContactUsController@store']);
 });
 
 

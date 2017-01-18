@@ -2,6 +2,30 @@
 
 @section('title', 'Contact')
 
+@section('styles')
+
+    <style>
+        #contactform .has-error label {
+            color: #a94442;
+        }
+        #contactform .has-error input {
+            border-color: #a94442;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        }
+        #contactform .has-error input:focus {
+            border-color: #843534;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+        }
+
+    </style>
+
+    @stop
+
+@section('header_script')
+    {{--<script src='https://www.google.com/recaptcha/api.js'></script>--}}
+@stop
 
 @section('slider')
 
@@ -11,7 +35,7 @@
 
 @section('content')
 
-    <section class="main container sbr clearfix">
+    <section class="main container sbr clearfix" id="content">
 
         <!-- - - - - - - - - - Breadcrumbs - - - - - - - - - - - - -->
 
@@ -32,27 +56,39 @@
 
             <section id="contact">
 
-                <form method="post" action="" class="comments-form" id="contactform">
+                @if(Session::has('success'))
+                    <p class="info type-2">{{ Session::get('success') }}</p>
+                @endif
 
-                    <p class="input-block">
+                <form method="post" action="{{ route('contactus.store') }}" class="comments-form" id="contactform">
+                    {{ csrf_field() }}
+
+                    <p class="input-block {{ $errors->has('name') ? 'has-error' : '' }}">
                         <label for="name">Name:</label>
-                        <input type="text" name="name" id="name" />
+                        <input type="text" name="name" id="name" value="{{ old('name') }}" />
+                        <span class="text-danger">{{ $errors->first('name') }}</span>
                     </p>
 
-                    <p class="input-block">
+                    <p class="input-block {{ $errors->has('email') ? 'has-error' : '' }}">
                         <label for="email">E-mail:</label>
-                        <input type="text" name="email" id="email" />
+                        <input type="text" name="email" id="email" value="{{ old('email') }}" />
+                        <span class="text-danger">{{ $errors->first('email') }}</span>
                     </p>
 
-                    <p class="input-block">
+                    <p class="input-block {{ $errors->has('message') ? 'has-error' : '' }}">
                         <label for="message">Message:</label>
-                        <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                        <textarea name="message" id="message" cols="30" rows="10">{{ old('message') }}</textarea>
+                        <div>
+                            <span class="text-danger">{{ $errors->first('message') }}</span>
+                        </div>
                     </p>
 
-                    <p class="input-block">
+                    <p class="input-block {{ $errors->has('g-recaptcha-response') ? 'has-error' : '' }}">
                         <label for="verify">Are you human?</label>
-                        <iframe src="php/capcha_page.php" height="29" width="80" scrolling="no" frameborder="0" marginheight="0" marginwidth="0" class="capcha_image_frame" name="capcha_image_frame"></iframe>
-                        <input class="verify" type="text" id="verify" name="verify" />
+                        {!! app('captcha')->display() !!}
+                        <div>
+                        <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+                        </div>
                     </p>
 
                     <p class="input-block">
