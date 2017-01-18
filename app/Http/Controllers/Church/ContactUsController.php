@@ -16,7 +16,7 @@ class ContactUsController extends Controller
      */
     public function index()
     {
-
+        $hay = 'hay';
     }
 
     /**
