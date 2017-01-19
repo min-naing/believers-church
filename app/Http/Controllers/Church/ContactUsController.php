@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Church;
 
 use App\ContactUs;
 use App\Http\Requests\ContactFormRequest;
+use App\Mail\ContactUsMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class ContactUsController extends Controller
 {
@@ -14,11 +16,12 @@ class ContactUsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $from;
+
     public function index()
     {
-        $hay = 'hay';
-        $hay = 'hay';
-        $hay = 'hay';
+
     }
 
     /**
@@ -39,9 +42,33 @@ class ContactUsController extends Controller
      */
     public function store(ContactFormRequest $request)
     {
-        ContactUs::create($request->all());
 
-        return back()->with('success', 'Thanks for contacting us! your message has been successfully sent to us.');
+        $name = $request->get('name');
+        $email = $request->get('email');
+        // $from = $request->email;
+        $msg = $request->get('message');
+
+        // echo "<script>alert('$email')</script>";
+
+        // Mail::to($from)->queue(new ContactUsMail($to, $message));
+
+        $data = [
+            'name' => $name,
+            'mail' => $email,
+            'msg' => $msg
+        ];
+
+        Mail::queue('emails.welcome', $data, function($message) use ($email){
+
+            $message->from($email, "Believers Church Myanmar");
+
+            $message->to('minthetnaing90@gmail.com')->subject('From Believers Church Myanmar Website contactor');
+
+        });
+
+        // ContactUs::create($request->all());
+
+        // return back()->with('success', 'Thanks for contacting us! your message has been successfully sent to us.');
     }
 
     /**
